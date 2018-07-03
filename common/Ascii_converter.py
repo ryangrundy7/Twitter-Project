@@ -37,8 +37,3 @@ def makeascii(img, imgname):# Function to Convert Image to Ascii
             y += 1  # Takes Y to next line
 
     text_file.close()
-
-
-
-
-print("Done!")

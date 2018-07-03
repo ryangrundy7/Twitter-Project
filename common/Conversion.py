@@ -8,13 +8,15 @@ PIXEL_ON = 0  # PIL color to use for "on"
 PIXEL_OFF = 255  # PIL color to use for "off"
 
 
-def main():
-    image = text_image('Profile.txt')
-    image.show()
-    image.save('content.png')
+def conversion(image):
+    converted_image = converting_text_to_image(image)
+    converted_image.show()
+    converted_image.save('content.png')
+
+    return converted_image
 
 
-def text_image(text_path, font_path=None):
+def converting_text_to_image(text_path, font_path=None):
     """Convert text file to a grayscale image with black characters on a white background.
 
     arguments:
@@ -59,7 +61,3 @@ def text_image(text_path, font_path=None):
     c_box = PIL.ImageOps.invert(image).getbbox()
     image = image.crop(c_box)
     return image
-
-
-if __name__ == '__main__':
-    main()

@@ -8,6 +8,7 @@ requests = "*"
 tweepy = "*"
 pillow = "*"
 wget = "*"
+flask = "*"
 
 [dev-packages]
 

@@ -2,13 +2,15 @@ import tweepy
 from config import Config
 import wget
 import sys
-from Common.Ascii_converter import makeascii, monochrome
+from common.Ascii_converter import makeascii, monochrome
+from common.Conversion import conversion
 
 
 def get_api(cfg):
     auth = tweepy.OAuthHandler(cfg['consumer_key'], cfg['consumer_secret'])
     auth.set_access_token(cfg['access_token'], cfg['access_token_secret'])
     return tweepy.API(auth)
+
 
 def get_user( api,name):
     user = api.get_user(screen_name=name)
@@ -35,12 +37,9 @@ def main():
     }
     word = ""
     if "_normal" in json.get("photo"):
-        print(json.get("photo"))
-        word =str(json.get("photo")).replace("_normal", "")
-        print(word)
+        word = str(json.get("photo")).replace("_normal", "")
     wget.download(word, out="Profile.jpg")
 
     makeascii(monochrome("Profile", ".jpg"), "Profile")
 
-if __name__ == "__main__":
-   main()
+    conversion('Profile.txt')
